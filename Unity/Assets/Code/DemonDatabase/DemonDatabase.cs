@@ -29,4 +29,9 @@ public static class DemonDatabase
 	{
 		return Demons[ demonName ];
 	}
+
+	public static List<DemonData> GetAllDemons()
+	{
+		return Demons.Values.ToList();
+	}
 }

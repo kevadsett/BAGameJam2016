@@ -8,7 +8,6 @@ public class DemonTest : MonoBehaviour
 
 	public void OnClick()
 	{
-		Debug.Log( "HEY!" );
 		var demonData = DemonDatabase.GetRandomDemon();
 
 		textOutput.text = demonData.Name;
