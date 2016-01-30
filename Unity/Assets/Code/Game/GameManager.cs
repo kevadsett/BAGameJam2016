@@ -20,10 +20,10 @@ public class GameManager : MonoBehaviour
 
 	Character stageCharacter;
 
-	const float timeBetweenSpawns = 4.0f;
+	const float timeBetweenSpawns = 5.0f;
 	float spawnTimer = 0.0f;
 
-	const float maxTimeOnStage = 10.0f;
+	const float maxTimeOnStage = 12.0f;
 	float stageTimer = 0.0f;
 
 	public InputField inputField;
