@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
 	public Text DemonName;
 
+	private bool isInputEnabled = false;
 
 	public void Update()
 	{
@@ -52,7 +53,12 @@ public class GameManager : MonoBehaviour
 
 	void SpawnInfected()
 	{
-		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDatabase.GetRandomDemon() );
+		SpawnInfected(() => {});
+	}
+
+	void SpawnInfected(Action callback)
+	{
+		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDatabase.GetRandomDemon(), callback );
 		Infected.Enqueue( newCharacter );
 
 		DemonName.text = newCharacter.DemonData.Name;
@@ -77,31 +83,43 @@ public class GameManager : MonoBehaviour
 	void newCharacterOnStage()
 	{
 		inputField.text = "";
+		isInputEnabled = false;
 
 		if( Infected.Count() == 0 )	//	Make sure the infected queue is never empty when moving things to the Stage area.
 		{
-			SpawnInfected();
+			SpawnInfected(() => newCharacterOnStagePlaced());
 			spawnTimer = timeBetweenSpawns;
 		}
+		else
+		{
+			newCharacterOnStagePlaced();
+		}
 
+	}
+
+	void newCharacterOnStagePlaced()
+	{
 		stageCharacter = Infected.Dequeue();
 		stageTimer = maxTimeOnStage;
 
-		stageCharacter.PositionAtPodium(PodiumTransform);
+		stageCharacter.PositionAtPodium(PodiumTransform, () => isInputEnabled = true);
 
 		for( int i = 0; i < Infected.Count; i++ )
 		{
-			Infected.ElementAt(i).PositionInQueue(QueueTransform, i);
+			Infected.ElementAt(i).PositionInQueue(QueueTransform, i, () => {});
 		}
 	}
 
 	public void OnInputValueSubmitted()
 	{
+		if( !isInputEnabled )
+			return;
+
 		bool success = false;
 		if( inputField.text == stageCharacter.DemonData.Chant )
 			success = true;
-
-		if( success )
+		
+		if( true || success )
 		{
 			StageSuccess();
 		}
@@ -115,21 +133,19 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "SUCCESS" );
 
-		//	GAVIN TODO: Move character to the angel area.
+		isInputEnabled = false;
 
-		stageCharacter.PositionInChoir( ChoirTransform, Cured.Count );
+		stageCharacter.PositionInChoir( ChoirTransform, Cured.Count, newCharacterOnStage );
 		Cured.Add( stageCharacter );
-
-		newCharacterOnStage();
 	}
 
 	void StageFail()
 	{
 		Debug.Log( "FAIL" );
 
-		//	GAVIN TODO: Move character to the demon area.
+		isInputEnabled = false;
 
-		stageCharacter.PositionInHell( HellTransform );
+		stageCharacter.PositionInHell( HellTransform, newCharacterOnStage);
 		Failed.Add( stageCharacter );
 
 		SpawnInfected();	//	PUNISHMENT!!!
@@ -137,8 +153,6 @@ public class GameManager : MonoBehaviour
 		SpawnInfected();
 
 		AudioManager.Instance.Play( "Demon_1" );
-
-		newCharacterOnStage();
 	}
 
 	void DebugUpdate()
