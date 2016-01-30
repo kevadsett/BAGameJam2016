@@ -17,4 +17,9 @@ public class ResultsLogic : MonoBehaviour
 	{
 		StateMachine.SetState( eState.Frontend );
 	}
+
+	void Update()
+	{
+		MusicManager.Instance.RemoveAllClips();
+	}
 }
