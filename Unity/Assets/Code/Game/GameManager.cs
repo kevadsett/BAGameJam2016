@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
 	Character stageCharacter;
 
-	const float timeBetweenSpawns = 5.0f;
+	const float timeBetweenSpawns = 3.0f;
 	float spawnTimer = 0.0f;
 
 	const float maxTimeOnStage = 12.0f;
@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour
 
 	void SpawnUpdate()
 	{
-		spawnTimer -= Time.deltaTime;
+		if( IsCountingDown )
+			spawnTimer -= Time.deltaTime;
 
 		if( spawnTimer < 0.0f )
 		{
