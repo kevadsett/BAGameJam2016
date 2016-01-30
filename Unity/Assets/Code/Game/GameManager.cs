@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
 	Queue<Character> Infected = new Queue<Character>();
 
-	List<Character> Cured = new List<Character>();
+	public List<Character> Cured = new List<Character>();
 	List<Character> Failed = new List<Character>();
 
 	Character stageCharacter;
@@ -31,9 +31,14 @@ public class GameManager : MonoBehaviour
 
 	public Text DemonName;
 
+	bool IsPlaying = true;
+
 
 	public void Update()
 	{
+		if( !IsPlaying )
+			return;
+
 		SpawnUpdate();
 		StageUpdate();
 		DebugUpdate();
@@ -52,10 +57,23 @@ public class GameManager : MonoBehaviour
 
 	void SpawnInfected()
 	{
+		if( !IsPlaying )
+			return;
+		
 		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDatabase.GetRandomDemon() );
 		Infected.Enqueue( newCharacter );
 
 		DemonName.text = newCharacter.DemonData.Name;
+
+		const int maxInfected = 12;
+		if( Infected.Count() > maxInfected )
+		{
+			IsPlaying = false;
+
+			StateMachine.SetState( eState.Results );
+
+			ResultsLogic.DemonsExorcised = Cured.Count;
+		}
 	}
 
 	void StageUpdate()

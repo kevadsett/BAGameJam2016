@@ -12,8 +12,6 @@ public class AudioManager : MonoBehaviour
 
 	void Awake()
 	{
-		Debug.Log( "WAKE" );
-
 		Instance = this;
 
 		audioSource = GetComponent<AudioSource>();

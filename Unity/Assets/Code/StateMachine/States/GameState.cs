@@ -11,7 +11,6 @@ public class GameState : State
 
 	public override void OnExit()
 	{
-		SceneManager.UnloadScene( "Game" );
 	}
 
 	public override void OnUpdate()
