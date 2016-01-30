@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class GameManager : MonoBehaviour
 {
 	[SerializeField] Character CharacterPrefab;
+	[SerializeField] GameObject DemonPrefab;
 	[SerializeField] Transform QueueTransform;
 	[SerializeField] Transform PodiumTransform;
 	[SerializeField] Transform ChoirTransform;
@@ -66,7 +67,9 @@ public class GameManager : MonoBehaviour
         if( !IsPlaying )
 			return;
 
-		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDatabase.GetRandomDemon(), callback );
+		var demon = GameObject.Instantiate( DemonPrefab ) as GameObject;
+
+		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDatabase.GetRandomDemon(), demon, callback );
 		Infected.Enqueue( newCharacter );
 
 		const int maxInfected = 12;
@@ -83,6 +86,12 @@ public class GameManager : MonoBehaviour
 	void StageUpdate()
 	{
 		stageTimer -= Time.deltaTime;
+
+		if( stageCharacter != null )
+		{
+			float ratio = stageTimer / maxTimeOnStage;
+			stageCharacter.DemonAmount = 1.0f - ratio;
+		}
 
 		if( stageTimer > 0.0f )
 			return;

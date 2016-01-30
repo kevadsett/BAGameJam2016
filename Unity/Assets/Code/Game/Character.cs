@@ -10,11 +10,15 @@ public class Character : MonoBehaviour
 	[SerializeField] private DevilHandAnimSeq devilHandAnimSeq;
 	[SerializeField] private int CharsPerPew;
 
+	GameObject demonGO;
+
 	private AnimateToPoint animator;
 
 	public DemonData DemonData { get; private set; }
 
-	public static Character Instantiate(Character prefab, int queuePosition, Transform queue, DemonData demonData, Action callback) {
+	public float DemonAmount { get; set; }
+
+	public static Character Instantiate(Character prefab, int queuePosition, Transform queue, DemonData demonData, GameObject demonGO, Action callback) {
 		var go = GameObject.Instantiate(prefab.gameObject) as GameObject;
 		go.transform.localPosition = queue.position + Vector3.up * 10.0f;
 
@@ -22,6 +26,12 @@ public class Character : MonoBehaviour
 		character.animator = go.GetComponent<AnimateToPoint>();
 		character.PositionInQueue(queue, queuePosition, callback);
 		character.DemonData = demonData;
+
+		character.demonGO = demonGO;
+		demonGO.transform.parent = character.transform;
+		demonGO.transform.localPosition = Vector3.zero;
+
+		character.DemonAmount = 0.0f;
 
 		return character;
 	}
@@ -52,5 +62,17 @@ public class Character : MonoBehaviour
 	public void PositionInHell(Transform hell, Action callback) {
 		transform.parent = hell;
 		devilHandAnimSeq.Trigger(DevilHand.LeftAnimator, DevilHand.RightAnimator, animator, transform.position, callback);
+	}
+
+	void Update()
+	{
+		Vector3 minPos = new Vector3( 0.0f, -3.6f, 0.2f );
+		Vector3 maxPos = new Vector3( 0.0f, 0.0f, 0.2f );
+
+		demonGO.transform.localPosition = Vector3.Lerp( minPos, maxPos, DemonAmount );
+
+		var screenPoint = Camera.main.WorldToScreenPoint( transform.position );
+
+		demonGO.GetComponent< StageDemon >().DemonMaterial.GetComponent<Renderer>().material.SetFloat( "_YCutOff", screenPoint.y );
 	}
 }
