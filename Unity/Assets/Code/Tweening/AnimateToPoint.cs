@@ -27,9 +27,9 @@ public class AnimateToPoint : MonoBehaviour {
 	private void Update() {
 		if (tween != null) {
 			if (timer > 1.0f) {
+				tween = null;
 				transform.position = targetPos;
 				onComplete();
-				tween = null;
 			} else { 
 				transform.position = tween.Evaluate(sourcePos, targetPos, timer);
 			}
