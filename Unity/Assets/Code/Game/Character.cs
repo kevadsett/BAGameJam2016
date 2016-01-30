@@ -11,15 +11,18 @@ public class Character : MonoBehaviour
 
 	private AnimateToPoint animator;
 
-	public static Character Instantiate(Character prefab, int queuePosition, Transform parent) {
+	public DemonData DemonData { get; private set; }
+
+	public static Character Instantiate(Character prefab, int queuePosition, Transform parent, DemonData demonData) {
 		var go = GameObject.Instantiate(prefab.gameObject) as GameObject;
 
 		go.transform.parent = parent;
-		go.transform.localPosition = parent.position + Vector3.up * 10.0f;;
+		go.transform.localPosition = parent.position + Vector3.up * 10.0f;
 
 		var character = go.GetComponent<Character>();
 		character.animator = go.GetComponent<AnimateToPoint>();
 		character.AnimateIntoQueuePosition(queuePosition);
+		character.DemonData = demonData;
 
 		return character;
 	}

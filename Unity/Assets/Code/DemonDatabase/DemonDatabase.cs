@@ -34,4 +34,9 @@ public static class DemonDatabase
 	{
 		return Demons.Values.ToList();
 	}
+
+	public static List<DemonData> GetAllDemonsOfType( eDemonType type )
+	{
+		return GetAllDemons().Where( q => q.Type == type ).ToList();
+	}
 }
