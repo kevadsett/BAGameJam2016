@@ -166,6 +166,14 @@ public class GameManager : MonoBehaviour
 		if( inputField.readOnly )
 			return;
 
+		if( !inputField.text.EndsWith( " " )  && inputField.text.Length > 1 )
+			return;
+
+		Shake();
+	}
+
+	void Shake()
+	{
 		ScreenShaker.Instance.ApplyShake(TypingShakeForce);
 	}
 
@@ -173,6 +181,8 @@ public class GameManager : MonoBehaviour
 	{
 		if( inputField.readOnly )
 			return;
+
+		Shake();
 
 		IsCountingDown = false;
 
@@ -194,6 +204,8 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "SUCCESS" );
 
+		DemonName.text = "";
+
 		if( stageCharacter.DemonData.ChantAudio != null )
 			AudioManager.Instance.Play( stageCharacter.DemonData.ChantAudio );
 
@@ -211,7 +223,11 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "FAIL" );
 
+		DemonName.text = "";
+
 		MusicManager.Instance.AddDemonClip();
+
+		Shake();
 
 		inputField.readOnly = true;
 		inputField.gameObject.SetActive( false );
