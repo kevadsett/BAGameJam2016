@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DemonDisplayManager : MonoBehaviour {
 	private List<DemonData> _demons;
 	private DemonData _currentDemon;
+	private GameObject _currentDemonInstance;
 	private int _demonIndex = -1;
 	void Start () {
 		DemonDatabase.LoadDatabase ();
@@ -13,21 +14,34 @@ public class DemonDisplayManager : MonoBehaviour {
 		NextDemon ();
 	}
 
-	void NextDemon() {
-		_demonIndex++;
-		if (_currentDemon) {
-			Destroy (_currentDemon);
+	public void NextDemon() {
+		_demonIndex = (_demonIndex + 1) % _demons.Count;
+		UpdateDemon ();
+	}
+
+	public void PreviousDemon() {
+		_demonIndex = (_demonIndex + _demons.Count - 1) % _demons.Count;
+		UpdateDemon ();
+	}
+
+	void RemoveExistingDemonInstance() {
+		if (_currentDemonInstance) {
+			Destroy (_currentDemonInstance);
 		}
+	}
+
+	void UpdateDemon() {
 		_currentDemon = _demons [_demonIndex];
+		RemoveExistingDemonInstance ();
 		InstantiateCurrentDemon ();
 	}
 
 	void InstantiateCurrentDemon() {
-		GameObject newDemonObject = Instantiate (_currentDemon.ArtAsset) as GameObject;
+		_currentDemonInstance = Instantiate (_currentDemon.ArtAsset) as GameObject;
 
 		// TODO: REPLACE WITH PREFAB CODE ONCE ASSETS ARE 3D
-		newDemonObject.transform.SetParent(GameObject.Find("DemonCanvas").transform);
-		newDemonObject.transform.Find ("Name").GetComponent<Text> ().text = _currentDemon.Name;
-		newDemonObject.transform.position = Vector3.zero;
+		_currentDemonInstance.transform.SetParent(GameObject.Find("DemonCanvas").transform);
+		_currentDemonInstance.transform.Find ("Name").GetComponent<Text> ().text = _currentDemon.Name;
+		_currentDemonInstance.transform.position = new Vector3 (50, 0, 0);
 	}
 }
