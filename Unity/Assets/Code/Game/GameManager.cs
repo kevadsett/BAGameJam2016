@@ -198,6 +198,8 @@ public class GameManager : MonoBehaviour
 		{
 			StageFail();
 		}
+
+		stageCharacter = null;
 	}
 
 	void StageSuccess()
