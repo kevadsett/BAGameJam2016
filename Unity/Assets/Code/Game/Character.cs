@@ -47,7 +47,7 @@ public class Character : MonoBehaviour
 		Vector3 targetPos = choir.position + TargetPosForChoirPos(pos);
 		
 		transform.parent = choir;
-		godHandAnimSeq.Trigger(GodHand.GodAnimator, animator, transform.position, targetPos, callback);
+		godHandAnimSeq.Trigger(GodHand.OpenAnimator, GodHand.ClosedAnimator, animator, transform.position, targetPos, callback);
 	}
 
 	public void PositionAtPodium(Transform podium, Action callback) {

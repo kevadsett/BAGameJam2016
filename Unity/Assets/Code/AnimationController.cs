@@ -38,7 +38,7 @@ public class AnimationController : MonoBehaviour {
 
 	public void PodiumToChoir() {
 		MyState = State.Animating;
-		godHandAnims.Trigger(godHandAnimator, victimAnimator, podiumPos, choirPos, () => {
+		godHandAnims.Trigger(godHandAnimator, godHandAnimator, victimAnimator, podiumPos, choirPos, () => {
 			MyState = State.Choir;
 		});
 	}

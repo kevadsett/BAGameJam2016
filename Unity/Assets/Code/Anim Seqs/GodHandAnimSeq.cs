@@ -9,21 +9,28 @@ public class GodHandAnimSeq : ScriptableObject
 	[SerializeField] private SimpleTween TweenGodHandOff;
 	[SerializeField] private Vector3 OffscreenPos;
 
-	public void Trigger(AnimateToPoint godHandAnimator,
+	public void Trigger(AnimateToPoint openAnimator,
+						AnimateToPoint closedAnimator,
 						AnimateToPoint victimAnimator,
 						Vector3 podiumPos,
 						Vector3 choirPos,
 						Action onComplete) {
 
-		godHandAnimator.gameObject.SetActive(true);
-		godHandAnimator.transform.position = OffscreenPos;
+		openAnimator.gameObject.SetActive(true);
+		closedAnimator.gameObject.SetActive(false);
+		openAnimator.transform.position = OffscreenPos;
 		victimAnimator.transform.position = podiumPos;
 
-		godHandAnimator.Trigger(TweenGodHandOn, podiumPos, () => {
+		openAnimator.Trigger(TweenGodHandOn, podiumPos, () => {
+			openAnimator.gameObject.SetActive(false);
+			closedAnimator.gameObject.SetActive(true);
+
+			closedAnimator.transform.position = openAnimator.transform.position;
+
 			victimAnimator.Trigger(TweenToChoir, choirPos);
-			godHandAnimator.Trigger(TweenToChoir, choirPos, () => {
-				godHandAnimator.Trigger(TweenGodHandOff, OffscreenPos, () => {
-					godHandAnimator.gameObject.SetActive(false);
+			closedAnimator.Trigger(TweenToChoir, choirPos, () => {
+				closedAnimator.Trigger(TweenGodHandOff, OffscreenPos, () => {
+					closedAnimator.gameObject.SetActive(false);
 					onComplete();
 				});
 			});
