@@ -1,8 +1,13 @@
 ﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CompanionDetailState : State
 {
+	public static eDemonType DemonType;
+
 	public override void OnEnter()
 	{
 		SceneManager.LoadScene ("CompanionDetail", LoadSceneMode.Additive);
@@ -16,4 +21,5 @@ public class CompanionDetailState : State
 	public override void OnUpdate()
 	{
 	}
+
 }

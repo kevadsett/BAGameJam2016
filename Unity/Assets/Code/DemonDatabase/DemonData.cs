@@ -3,8 +3,10 @@ using System.Collections;
 
 public enum eDemonType
 {
-	Pineapple,
-	Melon
+	Air,
+	Earth,
+	Fire,
+	Water
 }
 
 [CreateAssetMenu]
