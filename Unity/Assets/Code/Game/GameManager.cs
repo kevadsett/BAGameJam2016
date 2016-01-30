@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 		if( inputField.text == stageCharacter.DemonData.Chant )
 			success = true;
 		
-		if( true || success )
+		if( success )
 		{
 			StageSuccess();
 		}
