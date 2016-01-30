@@ -9,6 +9,7 @@ public class DevilHandAnimSeq : ScriptableObject
 	[SerializeField] private SimpleTween TweenDevilHandOff;
 	[SerializeField] private Vector3 HandSpacing;
 	[SerializeField] private Vector3 OffscreenPos;
+	[SerializeField] private float ScreenShakeForce;
 
 	public void Trigger(AnimateToPoint devilHandAnimator1,
 						AnimateToPoint devilHandAnimator2,
@@ -26,6 +27,7 @@ public class DevilHandAnimSeq : ScriptableObject
 		devilHandAnimator2.Trigger(TweenDevilHandOn, podiumPos + HandSpacing, () => {
 			devilHandAnimator1.Trigger(TweenDevilHandClose, podiumPos);
 			devilHandAnimator2.Trigger(TweenDevilHandClose, podiumPos, () => {
+				ScreenShaker.Instance.ApplyShake(ScreenShakeForce);
 				victimAnimator.Trigger(TweenDevilHandOff, OffscreenPos);
 				devilHandAnimator1.Trigger(TweenDevilHandOff, OffscreenPos);
 				devilHandAnimator2.Trigger(TweenDevilHandOff, OffscreenPos, () => {

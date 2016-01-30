@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] Transform PodiumTransform;
 	[SerializeField] Transform ChoirTransform;
 	[SerializeField] Transform HellTransform;
+	[SerializeField] float TypingShakeForce;
 
 	Queue<Character> Infected = new Queue<Character>();
 
@@ -158,6 +159,14 @@ public class GameManager : MonoBehaviour
 		}
 
 		DemonName.text = stageCharacter.DemonData.Type.ToString() + " " + stageCharacter.DemonData.Name;
+	}
+
+	public void OnInputValueChanged()
+	{
+		if( inputField.readOnly )
+			return;
+
+		ScreenShaker.Instance.ApplyShake(TypingShakeForce);
 	}
 
 	public void OnInputValueSubmitted()
