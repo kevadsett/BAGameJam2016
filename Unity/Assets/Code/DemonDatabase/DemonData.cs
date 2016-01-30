@@ -19,4 +19,6 @@ public class DemonData : ScriptableObject
 	public GameObject ArtAsset;
 
 	public string Chant;
+
+	public AudioClip ChantAudio;
 }

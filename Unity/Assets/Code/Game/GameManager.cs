@@ -185,6 +185,9 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "SUCCESS" );
 
+		if( stageCharacter.DemonData.ChantAudio != null )
+			AudioManager.Instance.Play( stageCharacter.DemonData.ChantAudio );
+
 		MusicManager.Instance.AddAngelClip();
 
 		inputField.readOnly = true;
