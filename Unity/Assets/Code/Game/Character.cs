@@ -37,18 +37,14 @@ public class Character : MonoBehaviour
 	}
 
 	public void PositionInQueue(Transform queue, int pos, Action callback) {
-		Vector3 targetPos = queue.position + Vector3.left * (float)(pos % CharsPerPew)
-			+ Vector3.up * (float)(pos / CharsPerPew)
-			+ Vector3.right * (float)((pos / CharsPerPew) % 2) * 0.5f;
+		Vector3 targetPos = queue.position + TargetPosForQueuePos(pos);
 
 		transform.parent = queue;
 		enterQueueAnims.Trigger(animator, transform.position, targetPos, callback);
 	}
 
 	public void PositionInChoir(Transform choir, int pos, Action callback) {
-		Vector3 targetPos = choir.position + Vector3.right * (float)(pos % CharsPerPew)
-			+ Vector3.up * (float)(pos / CharsPerPew)
-			+ Vector3.right * (float)((pos / CharsPerPew) % 2) * 0.5f;
+		Vector3 targetPos = choir.position + TargetPosForChoirPos(pos);
 		
 		transform.parent = choir;
 		godHandAnimSeq.Trigger(GodHand.GodAnimator, animator, transform.position, targetPos, callback);
@@ -64,6 +60,18 @@ public class Character : MonoBehaviour
 		devilHandAnimSeq.Trigger(DevilHand.LeftAnimator, DevilHand.RightAnimator, animator, transform.position, callback);
 	}
 
+	private Vector3 TargetPosForQueuePos(int pos) {
+		return Vector3.left * (float)(pos % CharsPerPew)
+			+ Vector3.up * ((float)(pos / CharsPerPew) * 0.62f + 0.6f)
+			+ Vector3.forward * (float)(pos / CharsPerPew);
+	}
+
+	private Vector3 TargetPosForChoirPos(int pos) {
+		return Vector3.right * (float)(pos % CharsPerPew)
+			+ Vector3.up * ((float)(pos / CharsPerPew) * 0.62f + 0.6f)
+			+ Vector3.forward * (float)(pos / CharsPerPew);
+	}
+	
 	void Update()
 	{
 		Vector3 minPos = new Vector3( 0.0f, -3.6f, 0.2f );
