@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 	public Text DemonName;
 
 	bool IsPlaying = true;
+	bool IsCountingDown = false;
 
 
 	public void Update()
@@ -82,7 +83,8 @@ public class GameManager : MonoBehaviour
 
 	void StageUpdate()
 	{
-		stageTimer -= Time.deltaTime;
+		if( IsCountingDown )	
+			stageTimer -= Time.deltaTime;
 
 		if( stageTimer > 0.0f )
 			return;
@@ -129,6 +131,7 @@ public class GameManager : MonoBehaviour
 	{
 		stageCharacter = Infected.Dequeue();
 		stageTimer = maxTimeOnStage;
+		IsCountingDown = true;
 
 		stageCharacter.PositionAtPodium(PodiumTransform, () =>
 			{
@@ -150,6 +153,8 @@ public class GameManager : MonoBehaviour
 	{
 		if( inputField.readOnly )
 			return;
+
+		IsCountingDown = false;
 
 		bool success = false;
 		if( inputField.text == stageCharacter.DemonData.Chant )
