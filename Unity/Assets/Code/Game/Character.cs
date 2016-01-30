@@ -5,34 +5,48 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 	[SerializeField] private EnterQueueAnimSeq enterQueueAnims;
-
-	private enum State { Offscreen, Queue, Stage, Choir, Animating };
-	private State state;
+	[SerializeField] private PodiumAppearAnimSeq approachPodiumAnims;
 
 	private AnimateToPoint animator;
 
 	public DemonData DemonData { get; private set; }
 
-	public static Character Instantiate(Character prefab, int queuePosition, Transform parent, DemonData demonData) {
+	public static Character Instantiate(Character prefab, int queuePosition, Transform queue, DemonData demonData) {
 		var go = GameObject.Instantiate(prefab.gameObject) as GameObject;
-
-		go.transform.parent = parent;
-		go.transform.localPosition = parent.position + Vector3.up * 10.0f;
+		go.transform.localPosition = queue.position + Vector3.up * 10.0f;
 
 		var character = go.GetComponent<Character>();
 		character.animator = go.GetComponent<AnimateToPoint>();
-		character.AnimateIntoQueuePosition(queuePosition);
+		character.PositionInQueue(queue, queuePosition);
 		character.DemonData = demonData;
 
 		return character;
 	}
 
-	public void AnimateIntoQueuePosition(int pos) {
-		Vector3 targetPos = transform.position + Vector3.right * (float)(pos % 3)
-											   + Vector3.up * (float)(pos / 3);
-		state = State.Animating;
-		enterQueueAnims.Trigger(animator, transform.position, targetPos, () => {
-			state = State.Queue;
-		});
+	public void PositionInQueue(Transform queue, int pos) {
+		Vector3 targetPos = queue.position + Vector3.left * (float)(pos % 3)
+											+ Vector3.up * (float)(pos / 3);
+
+		transform.parent = queue;
+		enterQueueAnims.Trigger(animator, transform.position, targetPos, () => {});
+	}
+
+	public void PositionInChoir(Transform choir, int pos) {
+		Vector3 targetPos = choir.position + Vector3.right * (float)(pos % 3)
+											+ Vector3.up * (float)(pos / 3);
+		
+		transform.parent = choir;
+		transform.position = targetPos;
+	}
+
+	public void PositionAtPodium(Transform podium) {
+		transform.parent = podium;
+		approachPodiumAnims.Trigger(animator, transform.position, podium.position, () => {});
+	}
+
+	public void PositionInHell(Transform hell) {
+		transform.parent = hell;
+		transform.position = hell.position;
+		gameObject.SetActive(false);
 	}
 }

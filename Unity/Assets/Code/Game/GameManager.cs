@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
 	[SerializeField] Character CharacterPrefab;
 	[SerializeField] Transform QueueTransform;
+	[SerializeField] Transform PodiumTransform;
+	[SerializeField] Transform ChoirTransform;
+	[SerializeField] Transform HellTransform;
 
 	Queue<Character> Infected = new Queue<Character>();
 
@@ -80,7 +83,12 @@ public class GameManager : MonoBehaviour
 		stageCharacter = Infected.Dequeue();
 		stageTimer = maxTimeOnStage;
 
-		//	GAVIN TODO - stageCharacter needs to move to the stage area.
+		stageCharacter.PositionAtPodium(PodiumTransform);
+
+		for( int i = 0; i < Infected.Count; i++ )
+		{
+			Infected.ElementAt(i).PositionInQueue(QueueTransform, i);
+		}
 	}
 
 	public void OnInputValueSubmitted()
@@ -105,6 +113,7 @@ public class GameManager : MonoBehaviour
 
 		//	GAVIN TODO: Move character to the angel area.
 
+		stageCharacter.PositionInChoir( ChoirTransform, Cured.Count );
 		Cured.Add( stageCharacter );
 
 		newCharacterOnStage();
@@ -116,6 +125,7 @@ public class GameManager : MonoBehaviour
 
 		//	GAVIN TODO: Move character to the demon area.
 
+		stageCharacter.PositionInHell( HellTransform );
 		Failed.Add( stageCharacter );
 
 		SpawnInfected();	//	PUNISHMENT!!!
