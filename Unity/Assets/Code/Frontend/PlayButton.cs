@@ -11,6 +11,6 @@ public class PlayButton : MonoBehaviour
 
 	public void OnCompanionClick()
 	{
-		SceneManager.LoadScene ("CompanionDemonDisplay");
+		StateMachine.SetState( eState.Companion );
 	}
 }
