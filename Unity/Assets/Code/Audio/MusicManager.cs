@@ -10,8 +10,12 @@ public class MusicManager : MonoBehaviour
 	public List<AudioSource> AngelSources = new List<AudioSource>();
 	public List<AudioSource> DemonSources = new List<AudioSource>();
 
+	public static MusicManager Instance { get; private set; }
+
 	void Start()
 	{
+		Instance = this;
+
 		foreach( var layer in AngelLayers )
 		{
 			AngelSources.Add( CreateSource( layer ) );
@@ -31,10 +35,45 @@ public class MusicManager : MonoBehaviour
 		var audioSource = newGO.AddComponent< AudioSource >();
 		audioSource.loop = true;
 		audioSource.clip = audioClip;
+		audioSource.volume = 0.0f;
 
-		//audioSource.Play();
+		audioSource.Play();
 
 		return audioSource;
 	}
-}
 
+	public void AddAngelClip()
+	{
+		foreach( var angel in AngelSources )
+		{
+			if( angel.volume > 0.0f )
+				continue;
+
+			angel.gameObject.AddComponent< VolumeAnimateUp >();
+
+			return;
+		}
+	}
+
+	public void AddDemonClip()
+	{
+		foreach( var demon in DemonSources )
+		{
+			if( demon.volume > 0.0f )
+				continue;
+
+			demon.gameObject.AddComponent< VolumeAnimateUp >();
+
+			return;
+		}
+	}
+
+	public void RemoveAllClips()
+	{
+		foreach( var demon in DemonSources )
+			demon.volume = 0.0f;
+
+		foreach( var angel in AngelSources )
+			angel.volume = 0.0f;
+	}
+}

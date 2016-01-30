@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
 		{
 			IsPlaying = false;
 
+			MusicManager.Instance.RemoveAllClips();
+
 			StateMachine.SetState( eState.Results );
 
 			ResultsLogic.DemonsExorcised = Cured.Count;
@@ -183,6 +185,8 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "SUCCESS" );
 
+		MusicManager.Instance.AddAngelClip();
+
 		inputField.readOnly = true;
 		inputField.gameObject.SetActive( false );
 
@@ -193,6 +197,8 @@ public class GameManager : MonoBehaviour
 	void StageFail()
 	{
 		Debug.Log( "FAIL" );
+
+		MusicManager.Instance.AddDemonClip();
 
 		inputField.readOnly = true;
 		inputField.gameObject.SetActive( false );
