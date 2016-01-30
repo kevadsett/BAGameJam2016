@@ -6,6 +6,8 @@ public class Character : MonoBehaviour
 {
 	[SerializeField] private EnterQueueAnimSeq enterQueueAnims;
 	[SerializeField] private PodiumAppearAnimSeq approachPodiumAnims;
+	[SerializeField] private GodHandAnimSeq godHandAnimSeq;
+	[SerializeField] private DevilHandAnimSeq devilHandAnimSeq;
 
 	private AnimateToPoint animator;
 
@@ -36,7 +38,7 @@ public class Character : MonoBehaviour
 											+ Vector3.up * (float)(pos / 3);
 		
 		transform.parent = choir;
-		transform.position = targetPos;
+		godHandAnimSeq.Trigger(GodHand.GodAnimator, animator, transform.position, targetPos, () => {});
 	}
 
 	public void PositionAtPodium(Transform podium) {
@@ -46,7 +48,6 @@ public class Character : MonoBehaviour
 
 	public void PositionInHell(Transform hell) {
 		transform.parent = hell;
-		transform.position = hell.position;
-		gameObject.SetActive(false);
+		devilHandAnimSeq.Trigger(DevilHand.LeftAnimator, DevilHand.RightAnimator, animator, transform.position, () => {});
 	}
 }
