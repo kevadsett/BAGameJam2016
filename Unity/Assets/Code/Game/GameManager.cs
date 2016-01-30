@@ -202,6 +202,7 @@ public class GameManager : MonoBehaviour
 		inputField.readOnly = true;
 		inputField.gameObject.SetActive( false );
 
+		stageCharacter.DemonAmount = 0.0f;
 		stageCharacter.PositionInChoir( ChoirTransform, Cured.Count, newCharacterOnStage );
 		Cured.Add( stageCharacter );
 	}
@@ -215,6 +216,7 @@ public class GameManager : MonoBehaviour
 		inputField.readOnly = true;
 		inputField.gameObject.SetActive( false );
 
+		stageCharacter.DemonAmount = 0.0f;
 		stageCharacter.PositionInHell( HellTransform, newCharacterOnStage);
 		Failed.Add( stageCharacter );
 
