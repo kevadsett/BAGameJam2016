@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
 
 	Character stageCharacter;
 
-	const float timeBetweenSpawns = 5.0f;
+	const float timeBetweenSpawns = 4.0f;
 	float spawnTimer = 0.0f;
 
 	const float maxTimeOnStage = 10.0f;
@@ -68,8 +69,6 @@ public class GameManager : MonoBehaviour
 		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDatabase.GetRandomDemon(), callback );
 		Infected.Enqueue( newCharacter );
 
-		DemonName.text = newCharacter.DemonData.Name;
-
 		const int maxInfected = 12;
 		if( Infected.Count() > maxInfected )
 		{
@@ -93,12 +92,19 @@ public class GameManager : MonoBehaviour
 			//	Player Failed to cure in time!
 			StageFail();
 		}
+		else
+		{
+			newCharacterOnStage();
+		}
 
-		newCharacterOnStage();
+		stageTimer = maxTimeOnStage;
 	}
 
 	void newCharacterOnStage()
 	{
+		DemonName.text = "";
+
+		inputField.gameObject.SetActive( false );
 		inputField.text = "";
 		inputField.readOnly = true;
 
@@ -111,7 +117,12 @@ public class GameManager : MonoBehaviour
 		{
 			newCharacterOnStagePlaced();
 		}
+	}
 
+	void SetInputFieldFocus()
+	{
+		EventSystem.current.SetSelectedGameObject(inputField.gameObject);
+		inputField.OnPointerClick(new PointerEventData( EventSystem.current ) );
 	}
 
 	void newCharacterOnStagePlaced()
@@ -119,12 +130,20 @@ public class GameManager : MonoBehaviour
 		stageCharacter = Infected.Dequeue();
 		stageTimer = maxTimeOnStage;
 
-		stageCharacter.PositionAtPodium(PodiumTransform, () => inputField.readOnly = false);
+		stageCharacter.PositionAtPodium(PodiumTransform, () =>
+			{
+				inputField.gameObject.SetActive( true );
+				inputField.readOnly = false;
+				SetInputFieldFocus();
+			} );
+				
 
 		for( int i = 0; i < Infected.Count; i++ )
 		{
 			Infected.ElementAt(i).PositionInQueue(QueueTransform, i, () => {});
 		}
+
+		DemonName.text = stageCharacter.DemonData.Type.ToString() + " " + stageCharacter.DemonData.Name;
 	}
 
 	public void OnInputValueSubmitted()
@@ -151,6 +170,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log( "SUCCESS" );
 
 		inputField.readOnly = true;
+		inputField.gameObject.SetActive( false );
 
 		stageCharacter.PositionInChoir( ChoirTransform, Cured.Count, newCharacterOnStage );
 		Cured.Add( stageCharacter );
@@ -161,15 +181,17 @@ public class GameManager : MonoBehaviour
 		Debug.Log( "FAIL" );
 
 		inputField.readOnly = true;
+		inputField.gameObject.SetActive( false );
 
 		stageCharacter.PositionInHell( HellTransform, newCharacterOnStage);
 		Failed.Add( stageCharacter );
 
 		SpawnInfected();	//	PUNISHMENT!!!
 		SpawnInfected();
-		SpawnInfected();
 
 		AudioManager.Instance.Play( "Demon_1" );
+
+		DemonName.text = "";
 	}
 
 	void DebugUpdate()
