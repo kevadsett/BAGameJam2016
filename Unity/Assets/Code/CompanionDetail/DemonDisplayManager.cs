@@ -10,7 +10,7 @@ public class DemonDisplayManager : MonoBehaviour {
 	private int _demonIndex = -1;
 	void Start () {
 		DemonDatabase.LoadDatabase ();
-		_demons = DemonDatabase.GetAllDemons ();
+		_demons = DemonDatabase.GetAllDemonsOfType (CompanionDetailState.DemonType);
 		NextDemon ();
 	}
 
