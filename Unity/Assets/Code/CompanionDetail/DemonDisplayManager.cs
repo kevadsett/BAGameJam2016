@@ -24,6 +24,10 @@ public class DemonDisplayManager : MonoBehaviour {
 		UpdateDemon ();
 	}
 
+	public void BackToCompanionState() {
+		StateMachine.SetState( eState.Companion );
+	}
+
 	void RemoveExistingDemonInstance() {
 		if (_currentDemonInstance) {
 			Destroy (_currentDemonInstance);
