@@ -27,7 +27,8 @@ public class Character : MonoBehaviour
 
 	public void PositionInQueue(Transform queue, int pos) {
 		Vector3 targetPos = queue.position + Vector3.left * (float)(pos % 3)
-											+ Vector3.up * (float)(pos / 3);
+											+ Vector3.up * (float)(pos / 3)
+											+ Vector3.forward * (float)(pos / 3);
 
 		transform.parent = queue;
 		enterQueueAnims.Trigger(animator, transform.position, targetPos, () => {});
@@ -35,7 +36,8 @@ public class Character : MonoBehaviour
 
 	public void PositionInChoir(Transform choir, int pos) {
 		Vector3 targetPos = choir.position + Vector3.right * (float)(pos % 3)
-											+ Vector3.up * (float)(pos / 3);
+											+ Vector3.up * (float)(pos / 3)
+											+ Vector3.forward * (float)(pos / 3);
 		
 		transform.parent = choir;
 		godHandAnimSeq.Trigger(GodHand.GodAnimator, animator, transform.position, targetPos, () => {});
