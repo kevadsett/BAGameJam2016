@@ -136,6 +136,8 @@ public class GameManager : MonoBehaviour
 		SpawnInfected();
 		SpawnInfected();
 
+		AudioManager.Instance.Play( "Demon_1" );
+
 		newCharacterOnStage();
 	}
 
