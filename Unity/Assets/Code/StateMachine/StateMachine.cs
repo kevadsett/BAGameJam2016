@@ -8,7 +8,9 @@ public enum eState
 
 	Frontend,
 	Game,
-	Results
+	Results,
+	Companion,
+	CompanionDetail
 }
 
 public static class StateMachine
@@ -19,7 +21,9 @@ public static class StateMachine
 
 		{ eState.Frontend, new FrontendState() },
 		{ eState.Game, new GameState() },
-		{ eState.Results, new ResultsState() }
+		{ eState.Results, new ResultsState() },
+		{ eState.Companion, new CompanionState() },
+		{ eState.CompanionDetail, new CompanionDetailState() }
 	};
 
 	static eState currentState;
