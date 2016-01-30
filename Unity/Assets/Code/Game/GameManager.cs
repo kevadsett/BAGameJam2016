@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+	[SerializeField] Character CharacterPrefab;
+	[SerializeField] Transform QueueTransform;
+
 	Queue<Character> Infected = new Queue<Character>();
 
 	List<Character> Cured = new List<Character>();
@@ -42,7 +45,7 @@ public class GameManager : MonoBehaviour
 	void SpawnInfected()
 	{
 		//	GAVIN TODO: Show character on screen!
-		Infected.Enqueue( new Character() );
+		Infected.Enqueue( Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform ) );
 	}
 
 	void StageUpdate()
