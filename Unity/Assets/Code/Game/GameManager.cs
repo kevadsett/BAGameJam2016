@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
 	public Text debugText;
 
+	public Text DemonName;
+
 
 	public void Update()
 	{
@@ -48,6 +50,8 @@ public class GameManager : MonoBehaviour
 
 		//	GAVIN TODO: Show character on screen!
 		Infected.Enqueue( newCharacter );
+
+		DemonName.text = newCharacter.DemonData.Name;
 	}
 
 	void StageUpdate()
@@ -85,7 +89,7 @@ public class GameManager : MonoBehaviour
 	public void OnInputValueSubmitted()
 	{
 		bool success = false;
-		if( inputField.text == "test" )
+		if( inputField.text == stageCharacter.DemonData.Chant )
 			success = true;
 
 		if( success )
