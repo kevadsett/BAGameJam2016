@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
 
 	public Text DemonName;
 
-	private bool isInputEnabled = false;
-
 	public void Update()
 	{
 		SpawnUpdate();
@@ -83,7 +81,7 @@ public class GameManager : MonoBehaviour
 	void newCharacterOnStage()
 	{
 		inputField.text = "";
-		isInputEnabled = false;
+		inputField.readOnly = true;
 
 		if( Infected.Count() == 0 )	//	Make sure the infected queue is never empty when moving things to the Stage area.
 		{
@@ -102,7 +100,7 @@ public class GameManager : MonoBehaviour
 		stageCharacter = Infected.Dequeue();
 		stageTimer = maxTimeOnStage;
 
-		stageCharacter.PositionAtPodium(PodiumTransform, () => isInputEnabled = true);
+		stageCharacter.PositionAtPodium(PodiumTransform, () => inputField.readOnly = false);
 
 		for( int i = 0; i < Infected.Count; i++ )
 		{
@@ -112,7 +110,7 @@ public class GameManager : MonoBehaviour
 
 	public void OnInputValueSubmitted()
 	{
-		if( !isInputEnabled )
+		if( inputField.readOnly )
 			return;
 
 		bool success = false;
@@ -133,7 +131,7 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "SUCCESS" );
 
-		isInputEnabled = false;
+		inputField.readOnly = true;
 
 		stageCharacter.PositionInChoir( ChoirTransform, Cured.Count, newCharacterOnStage );
 		Cured.Add( stageCharacter );
@@ -143,7 +141,7 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "FAIL" );
 
-		isInputEnabled = false;
+		inputField.readOnly = true;
 
 		stageCharacter.PositionInHell( HellTransform, newCharacterOnStage);
 		Failed.Add( stageCharacter );
