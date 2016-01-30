@@ -21,11 +21,14 @@ public class GameManager : MonoBehaviour
 
 	public InputField inputField;
 
+	public Text debugText;
+
 
 	public void Update()
 	{
 		SpawnUpdate();
 		StageUpdate();
+		DebugUpdate();
 	}
 
 	void SpawnUpdate()
@@ -41,8 +44,10 @@ public class GameManager : MonoBehaviour
 
 	void SpawnInfected()
 	{
+		var newCharacter = new Character( DemonDatabase.GetRandomDemon() );
+
 		//	GAVIN TODO: Show character on screen!
-		Infected.Enqueue( new Character() );
+		Infected.Enqueue( newCharacter );
 	}
 
 	void StageUpdate()
@@ -58,8 +63,11 @@ public class GameManager : MonoBehaviour
 			StageFail();
 		}
 
-		//	Move new character onto the Stage
+		newCharacterOnStage();
+	}
 
+	void newCharacterOnStage()
+	{
 		inputField.text = "";
 
 		if( Infected.Count() == 0 )	//	Make sure the infected queue is never empty when moving things to the Stage area.
@@ -72,8 +80,6 @@ public class GameManager : MonoBehaviour
 		stageTimer = maxTimeOnStage;
 
 		//	GAVIN TODO - stageCharacter needs to move to the stage area.
-		//	This will occuring either due to timeout (within this function) or input of an
-		//	incorrect chant (but both will come through THIS code path).
 	}
 
 	public void OnInputValueSubmitted()
@@ -96,20 +102,44 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "SUCCESS" );
 
-		spawnTimer = 0.0f;	//	Get another character onto the stage.
+		//	GAVIN TODO: Move character to the angel area.
 
-		inputField.text = "";
+		Cured.Add( stageCharacter );
+
+		newCharacterOnStage();
 	}
 
 	void StageFail()
 	{
 		Debug.Log( "FAIL" );
 
+		//	GAVIN TODO: Move character to the demon area.
+
+		Failed.Add( stageCharacter );
+
 		SpawnInfected();	//	PUNISHMENT!!!
+		SpawnInfected();
+		SpawnInfected();
 
-		spawnTimer = 0.0f;	//	Get another character onto the stage.
+		newCharacterOnStage();
+	}
 
-		inputField.text = "";
+	void DebugUpdate()
+	{
+		string debugString = string.Empty;
+		debugString += string.Format( "spawnTimer = {0}\n", spawnTimer );
+		debugString += string.Format( "stageTimer = {0}\n", stageTimer );
+
+		if( stageCharacter == null )
+			debugString += string.Format( "stageCharacter = NULL\n" );
+		else
+			debugString += string.Format( "stageCharacter = {0}\n", stageCharacter.DemonData.Name );
+
+		debugString += string.Format( "Infected.Count() = {0}\n", Infected.Count() );
+		debugString += string.Format( "Cured.Count() = {0}\n", Cured.Count() );
+		debugString += string.Format( "Failed.Count() = {0}\n", Failed.Count() );
+
+		debugText.text = debugString;
 	}
 }
 

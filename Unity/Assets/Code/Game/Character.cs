@@ -2,8 +2,11 @@
 
 public class Character
 {
-	public Character()
+	public DemonData DemonData;
+
+	public Character( DemonData demonData )
 	{
+		this.DemonData = demonData;
 	}
 }
 
