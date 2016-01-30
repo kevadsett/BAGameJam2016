@@ -7,6 +7,9 @@ public class DemonDisplayManager : MonoBehaviour {
 	private List<DemonData> _demons;
 	private DemonData _currentDemon;
 	private GameObject _currentDemonInstance;
+
+	public Transform DemonContainer;
+
 	private int _demonIndex = -1;
 	void Start () {
 		DemonDatabase.LoadDatabase ();
@@ -42,12 +45,11 @@ public class DemonDisplayManager : MonoBehaviour {
 
 	void InstantiateCurrentDemon() {
 		_currentDemonInstance = Instantiate (_currentDemon.ArtAsset) as GameObject;
+		_currentDemonInstance.transform.localScale = new Vector3 (2, 2, 2);
+		_currentDemonInstance.transform.SetParent (DemonContainer, true);
 
 		Transform canvas = GameObject.Find ("DemonCanvas").transform;
-		// TODO: REPLACE WITH PREFAB CODE ONCE ASSETS ARE 3D
-		_currentDemonInstance.transform.SetParent(canvas);
 		canvas.Find("NameText").GetComponent<Text>().text = _currentDemon.Name;
 		canvas.Find("ChantText").GetComponent<Text>().text = _currentDemon.Chant;
-		_currentDemonInstance.transform.position = new Vector3 (50, 0, 0);
 	}
 }
