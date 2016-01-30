@@ -46,6 +46,7 @@ public class DemonDisplayManager : MonoBehaviour {
 		// TODO: REPLACE WITH PREFAB CODE ONCE ASSETS ARE 3D
 		_currentDemonInstance.transform.SetParent(GameObject.Find("DemonCanvas").transform);
 		_currentDemonInstance.transform.Find ("Name").GetComponent<Text> ().text = _currentDemon.Name;
+		_currentDemonInstance.transform.Find ("Chant").GetComponent<Text> ().text = _currentDemon.Chant;
 		_currentDemonInstance.transform.position = new Vector3 (50, 0, 0);
 	}
 }
