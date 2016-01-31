@@ -7,6 +7,7 @@ public class PodiumAppearAnimSeq : ScriptableObject
 	[SerializeField] private SimpleTween TweenToQueue;
 
 	public void Trigger(AnimateToPoint victimAnimator,
+		ParticleSystem poofCloud,
 		GameObject bigDemonRoot,
 		Transform demonRoot,
 		Transform sadRoot,
@@ -16,8 +17,10 @@ public class PodiumAppearAnimSeq : ScriptableObject
 
 		demonRoot.gameObject.SetActive(false);
 		victimAnimator.transform.position = startPos;
+		poofCloud.Play();
 
 		victimAnimator.Trigger(TweenToQueue, podiumPos, () => {
+			poofCloud.Play();
 			bigDemonRoot.SetActive(true);
 			sadRoot.gameObject.SetActive(true);
 			onComplete();

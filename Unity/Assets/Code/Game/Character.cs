@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
 	[SerializeField] private Transform happyRoot;
 	[SerializeField] private Transform ecstaticRoot;
 	[SerializeField] private Transform miniDemonRoot;
+	[SerializeField] private ParticleSystem poofCloud;
 
 	GameObject demonGO;
 
@@ -70,7 +71,7 @@ public class Character : MonoBehaviour
 
 	public void PositionAtPodium(Transform podium, Action callback) {
 		transform.parent = podium;
-		approachPodiumAnims.Trigger(animator, demonGO, miniDemonRoot, sadRoot, transform.position, podium.position, callback);
+		approachPodiumAnims.Trigger(animator, poofCloud, demonGO, miniDemonRoot, sadRoot, transform.position, podium.position, callback);
 	}
 
 	public void PositionInHell(Transform hell, Action callback) {
