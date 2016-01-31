@@ -9,6 +9,8 @@ public class Character : MonoBehaviour
 	[SerializeField] private GodHandAnimSeq godHandAnimSeq;
 	[SerializeField] private DevilHandAnimSeq devilHandAnimSeq;
 	[SerializeField] private int CharsPerPew;
+	[SerializeField] private Transform charRoot;
+	[SerializeField] private Transform miniDemonRoot;
 
 	GameObject demonGO;
 
@@ -33,6 +35,12 @@ public class Character : MonoBehaviour
 
 		character.DemonAmount = 0.0f;
 
+		var dgo = GameObject.Instantiate(demonData.ArtAsset) as GameObject;
+		dgo.transform.parent = character.miniDemonRoot;
+		dgo.transform.localPosition = Vector3.zero;
+
+		character.charRoot.gameObject.SetActive(false);
+
 		return character;
 	}
 
@@ -51,6 +59,9 @@ public class Character : MonoBehaviour
 	}
 
 	public void PositionAtPodium(Transform podium, Action callback) {
+		charRoot.gameObject.SetActive(true);
+		miniDemonRoot.gameObject.SetActive(false);
+
 		transform.parent = podium;
 		approachPodiumAnims.Trigger(animator, transform.position, podium.position, callback);
 	}

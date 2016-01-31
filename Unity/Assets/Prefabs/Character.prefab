@@ -17,6 +17,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &120656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 490368}
+  m_Layer: 0
+  m_Name: Character Node
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &121134
 GameObject:
   m_ObjectHideFlags: 1
@@ -36,7 +51,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &129006
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -61,6 +76,21 @@ GameObject:
   - 23: {fileID: 2374900}
   m_Layer: 0
   m_Name: mainCharacter_body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &161248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 425956}
+  m_Layer: 0
+  m_Name: Mini Demon Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,6 +130,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &425956
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 461598}
+  m_RootOrder: 0
 --- !u!4 &426316
 Transform:
   m_ObjectHideFlags: 1
@@ -143,10 +185,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 485674}
+  - {fileID: 425956}
+  - {fileID: 490368}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &461882
@@ -175,8 +218,21 @@ Transform:
   - {fileID: 456986}
   - {fileID: 426316}
   - {fileID: 461882}
-  m_Father: {fileID: 461598}
+  m_Father: {fileID: 490368}
   m_RootOrder: 0
+--- !u!4 &490368
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 485674}
+  m_Father: {fileID: 461598}
+  m_RootOrder: 1
 --- !u!23 &2313322
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -337,6 +393,8 @@ MonoBehaviour:
   godHandAnimSeq: {fileID: 11400000, guid: 47e282040de4a467c85ad48b026bcd6d, type: 2}
   devilHandAnimSeq: {fileID: 11400000, guid: b69cc8f9019ea4b3fbaf4862cfa68dc8, type: 2}
   CharsPerPew: 3
+  charRoot: {fileID: 490368}
+  miniDemonRoot: {fileID: 425956}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
