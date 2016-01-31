@@ -22,10 +22,10 @@ public class GameManager : MonoBehaviour
 
 	Character stageCharacter;
 
-	const float timeBetweenSpawns = 5.0f;
+	float timeBetweenSpawns = 5.0f;
 	float spawnTimer = 0.0f;
 
-	const float maxTimeOnStage = 12.0f;
+	float maxTimeOnStage = 12.0f;
 	float stageTimer = 0.0f;
 
 	public InputField inputField;
@@ -37,6 +37,12 @@ public class GameManager : MonoBehaviour
 	bool IsPlaying = true;
 	bool IsCountingDown = false;
 
+
+	void Awake()
+	{
+		timeBetweenSpawns = 5.0f;
+		maxTimeOnStage = 12.0f;
+	}
 
 	public void Update()
 	{
@@ -206,6 +212,8 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "SUCCESS" );
 
+		maxTimeOnStage -= 0.5f;
+
 		DemonName.text = "";
 
 		if( stageCharacter.DemonData.ChantAudio != null )
@@ -224,6 +232,8 @@ public class GameManager : MonoBehaviour
 	void StageFail()
 	{
 		Debug.Log( "FAIL" );
+
+		maxTimeOnStage += 1.0f;
 
 		DemonName.text = "";
 
