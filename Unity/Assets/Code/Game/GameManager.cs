@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 	bool IsPlaying = true;
 	bool IsCountingDown = false;
 
-	const bool debugMode = true;
+	const bool debugMode = false;
 
 
 	public const int maxCharacters = 12;
