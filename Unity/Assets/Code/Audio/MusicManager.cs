@@ -71,9 +71,19 @@ public class MusicManager : MonoBehaviour
 	public void RemoveAllClips()
 	{
 		foreach( var demon in DemonSources )
+		{
 			demon.volume = 0.0f;
+			var anim = demon.GetComponent< VolumeAnimateUp >();
+			if( anim != null )
+				GameObject.DestroyImmediate( anim );
+		}
 
 		foreach( var angel in AngelSources )
+		{
 			angel.volume = 0.0f;
+			var anim = angel.GetComponent< VolumeAnimateUp >();
+			if( anim != null )
+				GameObject.DestroyImmediate( anim );
+		}
 	}
 }

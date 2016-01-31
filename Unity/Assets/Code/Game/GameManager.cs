@@ -37,8 +37,10 @@ public class GameManager : MonoBehaviour
 	bool IsPlaying = true;
 	bool IsCountingDown = false;
 
+	const bool debugMode = true;
 
-	const int maxCharacters = 12;
+
+	public const int maxCharacters = 12;
 
 	void Awake()
 	{
@@ -86,11 +88,11 @@ public class GameManager : MonoBehaviour
 
 		if( Infected.Count() > maxCharacters )
 		{
-			GameOver();
+			GameOver( false );
 		}
 	}
 
-	void GameOver()
+	void GameOver( bool success )
 	{
 		IsPlaying = false;
 
@@ -99,6 +101,7 @@ public class GameManager : MonoBehaviour
 		StateMachine.SetState( eState.Results );
 
 		ResultsLogic.DemonsExorcised = Cured.Count;
+		ResultsLogic.Success = success;
 	}
 
 	void StageUpdate()
@@ -201,7 +204,7 @@ public class GameManager : MonoBehaviour
 		IsCountingDown = false;
 
 		bool success = false;
-		if( inputField.text == stageCharacter.DemonData.Chant )
+		if( inputField.text == stageCharacter.DemonData.Chant || ( debugMode && inputField.text == "test" ) )
 			success = true;
 		
 		if( success )
@@ -237,7 +240,7 @@ public class GameManager : MonoBehaviour
 		Cured.Add( stageCharacter );
 
 		if( Cured.Count >= maxCharacters )
-			GameOver();
+			GameOver( true );
 	}
 
 	void StageFail()
