@@ -103,8 +103,6 @@ public class Character : MonoBehaviour
 			alpha = 0.0f;
 		}
 
-		Debug.Log( DemonAmount );
-
 		Vector3 minPos = new Vector3( 0.1f, -4.5f, 0.2f );
 		Vector3 maxPos = new Vector3( 0.1f, -1.5f, 0.2f );
 
