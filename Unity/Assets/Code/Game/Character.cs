@@ -34,6 +34,7 @@ public class Character : MonoBehaviour
 		character.demonGO = demonGO;
 		demonGO.transform.parent = character.transform;
 		demonGO.transform.localPosition = Vector3.zero;
+		demonGO.SetActive(false);
 
 		character.DemonAmount = 0.0f;
 
@@ -69,7 +70,7 @@ public class Character : MonoBehaviour
 
 	public void PositionAtPodium(Transform podium, Action callback) {
 		transform.parent = podium;
-		approachPodiumAnims.Trigger(animator, miniDemonRoot, sadRoot, transform.position, podium.position, callback);
+		approachPodiumAnims.Trigger(animator, demonGO, miniDemonRoot, sadRoot, transform.position, podium.position, callback);
 	}
 
 	public void PositionInHell(Transform hell, Action callback) {
