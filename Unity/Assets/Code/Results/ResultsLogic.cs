@@ -6,11 +6,28 @@ public class ResultsLogic : MonoBehaviour
 {
 	public Text Score;
 
+	public GameObject Good;
+	public GameObject Evil;
+
+	public static bool Success = false;
 	public static int DemonsExorcised;
 
 	void Awake()
 	{
-		Score.text = string.Format( "Demons Exorcised: {0}", DemonsExorcised );
+		if( Success )
+		{
+			Score.text = string.Format( "MAXIMUM Souls Saved", DemonsExorcised );
+
+			Good.SetActive( true );
+			Evil.SetActive( false );
+		}
+		else
+		{
+			Score.text = string.Format( "Souls Saved: {0}", DemonsExorcised );
+
+			Good.SetActive( false );
+			Evil.SetActive( true );
+		}
 	}
 
 	public void OnNext()

@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
 	bool IsPlaying = true;
 	bool IsCountingDown = false;
 
+	const bool debugMode = true;
+
+
+	public const int maxCharacters = 12;
 
 	void Awake()
 	{
@@ -81,17 +85,23 @@ public class GameManager : MonoBehaviour
 		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDeck.Draw(), demon, callback );
 		Infected.Enqueue( newCharacter );
 
-		const int maxInfected = 12;
-		if( Infected.Count() > maxInfected )
+
+		if( Infected.Count() > maxCharacters )
 		{
-			IsPlaying = false;
-
-			MusicManager.Instance.RemoveAllClips();
-
-			StateMachine.SetState( eState.Results );
-
-			ResultsLogic.DemonsExorcised = Cured.Count;
+			GameOver( false );
 		}
+	}
+
+	void GameOver( bool success )
+	{
+		IsPlaying = false;
+
+		MusicManager.Instance.RemoveAllClips();
+
+		StateMachine.SetState( eState.Results );
+
+		ResultsLogic.DemonsExorcised = Cured.Count;
+		ResultsLogic.Success = success;
 	}
 
 	void StageUpdate()
@@ -194,7 +204,7 @@ public class GameManager : MonoBehaviour
 		IsCountingDown = false;
 
 		bool success = false;
-		if( inputField.text == stageCharacter.DemonData.Chant )
+		if( inputField.text == stageCharacter.DemonData.Chant || ( debugMode && inputField.text == "test" ) )
 			success = true;
 		
 		if( success )
@@ -228,6 +238,11 @@ public class GameManager : MonoBehaviour
 		stageCharacter.DemonAmount = 0.0f;
 		stageCharacter.PositionInChoir( ChoirTransform, Cured.Count, newCharacterOnStage );
 		Cured.Add( stageCharacter );
+
+		if( Cured.Count >= maxCharacters )
+			GameOver( true );
+
+		AudioManager.Instance.Play( "GodHand");
 	}
 
 	void StageFail()
@@ -252,7 +267,7 @@ public class GameManager : MonoBehaviour
 		SpawnInfected();	//	PUNISHMENT!!!
 		SpawnInfected();
 
-		AudioManager.Instance.Play( "Demon_1" );
+		AudioManager.Instance.Play( "DevilHand" );
 
 		DemonName.text = "";
 	}

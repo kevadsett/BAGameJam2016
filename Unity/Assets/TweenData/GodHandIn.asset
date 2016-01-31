@@ -9,16 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10fd695dfcba44a95b2bb8a944b4a82e, type: 3}
-  m_Name: DevilOff
+  m_Name: GodHandIn
   m_EditorClassIdentifier: 
-  duration: 0.2
+  duration: 1.3
   timeScale:
     serializedVersion: 2
     m_Curve:
-    - time: 0.3625
-      value: 0.018749999
-      inSlope: 2
-      outSlope: 2
+    - time: 0.31618056
+      value: -0.0062499996
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.62624687
+      value: 0.46249926
+      inSlope: 2.5832355
+      outSlope: 2.5832355
       tangentMode: 0
     - time: 1
       value: 1
