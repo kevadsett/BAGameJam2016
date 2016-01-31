@@ -199,10 +199,6 @@ public class GameManager : MonoBehaviour
 		if( inputField.readOnly )
 			return;
 
-		Shake();
-
-		IsCountingDown = false;
-
 		bool success = false;
 		if( inputField.text == stageCharacter.DemonData.Chant || ( debugMode && inputField.text == "test" ) )
 			success = true;
@@ -210,13 +206,15 @@ public class GameManager : MonoBehaviour
 		if( success )
 		{
 			StageSuccess();
+
+			IsCountingDown = false;
+			stageCharacter = null;
 		}
 		else
 		{
-			StageFail();
+			InputShaker.Instance.ApplyShake( 40.0f );
+			SetInputFieldFocus();
 		}
-
-		stageCharacter = null;
 	}
 
 	void StageSuccess()
