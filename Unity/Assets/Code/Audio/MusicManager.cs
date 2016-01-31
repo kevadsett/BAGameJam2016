@@ -12,7 +12,7 @@ public class MusicManager : MonoBehaviour
 
 	public static MusicManager Instance { get; private set; }
 
-	void Start()
+	void Awake()
 	{
 		Instance = this;
 

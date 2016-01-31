@@ -6,6 +6,9 @@ public class ResultsLogic : MonoBehaviour
 {
 	public Text Score;
 
+	public GameObject Good;
+	public GameObject Evil;
+
 	public static int DemonsExorcised;
 
 	void Awake()

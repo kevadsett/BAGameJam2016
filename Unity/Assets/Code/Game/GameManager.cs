@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 	bool IsCountingDown = false;
 
 
+	const int maxCharacters = 12;
+
 	void Awake()
 	{
 		timeBetweenSpawns = 5.0f;
@@ -81,17 +83,22 @@ public class GameManager : MonoBehaviour
 		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDeck.Draw(), demon, callback );
 		Infected.Enqueue( newCharacter );
 
-		const int maxInfected = 12;
-		if( Infected.Count() > maxInfected )
+
+		if( Infected.Count() > maxCharacters )
 		{
-			IsPlaying = false;
-
-			MusicManager.Instance.RemoveAllClips();
-
-			StateMachine.SetState( eState.Results );
-
-			ResultsLogic.DemonsExorcised = Cured.Count;
+			GameOver();
 		}
+	}
+
+	void GameOver()
+	{
+		IsPlaying = false;
+
+		MusicManager.Instance.RemoveAllClips();
+
+		StateMachine.SetState( eState.Results );
+
+		ResultsLogic.DemonsExorcised = Cured.Count;
 	}
 
 	void StageUpdate()
@@ -228,6 +235,9 @@ public class GameManager : MonoBehaviour
 		stageCharacter.DemonAmount = 0.0f;
 		stageCharacter.PositionInChoir( ChoirTransform, Cured.Count, newCharacterOnStage );
 		Cured.Add( stageCharacter );
+
+		if( Cured.Count >= maxCharacters )
+			GameOver();
 	}
 
 	void StageFail()
