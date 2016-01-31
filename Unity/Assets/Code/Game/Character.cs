@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
 	[SerializeField] private Transform miniDemonRoot;
 	[SerializeField] private ParticleSystem poofCloud;
 
-	public float YCutOffOffset = -45.0f;
+	public float YCutOffOffset = -70.0f;
 
 	GameObject demonGO;
 
@@ -117,7 +117,9 @@ public class Character : MonoBehaviour
 
 		foreach( var materialGO in materialList )
 		{
-			materialGO.GetComponent<Renderer>().material.SetFloat( "_YCutOff", screenPoint.y + YCutOffOffset );
+			const float bullshit = -0.1f;
+
+			materialGO.GetComponent<Renderer>().material.SetFloat( "_YCutOff", screenPoint.y + ( Screen.height * bullshit ) );
 			materialGO.GetComponent<Renderer>().material.SetFloat( "_Alpha", alpha );
 		}
 	}
