@@ -8,6 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 436828}
+  - 114: {fileID: 11441496}
   m_Layer: 0
   m_Name: Sad Node
   m_TagString: Untagged
@@ -1022,6 +1023,127 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286baf6bdc97f4ce389a770894034cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11441496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16918d23835a34a53ad5d39b52003030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  falloff1:
+    serializedVersion: 2
+    m_Curve:
+    - time: -0.008333334
+      value: 0.018750072
+      inSlope: 6.636153
+      outSlope: 6.636153
+      tangentMode: 0
+    - time: 0.11045347
+      value: 0.9058794
+      inSlope: -0.033527613
+      outSlope: -0.033527613
+      tangentMode: 0
+    - time: 0.23691873
+      value: -0.80606264
+      inSlope: -1.2549758
+      outSlope: -1.2549758
+      tangentMode: 0
+    - time: 0.4643562
+      value: 0.5936228
+      inSlope: 2.181083
+      outSlope: 2.181083
+      tangentMode: 0
+    - time: 0.6101892
+      value: -0.39880413
+      inSlope: -2.02626
+      outSlope: -2.02626
+      tangentMode: 0
+    - time: 0.77202696
+      value: 0.25650555
+      inSlope: 2.0198524
+      outSlope: 2.0198524
+      tangentMode: 0
+    - time: 0.88353807
+      value: -0.071104646
+      inSlope: -2.1786988
+      outSlope: -2.1786988
+      tangentMode: 0
+    - time: 0.9916667
+      value: -0.0062499046
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  falloff2:
+    serializedVersion: 2
+    m_Curve:
+    - time: -0.008333334
+      value: 0.018750072
+      inSlope: 6.636153
+      outSlope: 6.636153
+      tangentMode: 0
+    - time: 0.0812423
+      value: 0.7983654
+      inSlope: -0.033527613
+      outSlope: -0.033527613
+      tangentMode: 0
+    - time: 0.10754499
+      value: -0.74868655
+      inSlope: -1.2549758
+      outSlope: -1.2549758
+      tangentMode: 0
+    - time: 0.29617035
+      value: 0.5936228
+      inSlope: 2.181083
+      outSlope: 2.181083
+      tangentMode: 0
+    - time: 0.3385043
+      value: -0.49921224
+      inSlope: -2.02626
+      outSlope: -2.02626
+      tangentMode: 0
+    - time: 0.4874047
+      value: 0.4142897
+      inSlope: 2.0198524
+      outSlope: 2.0198524
+      tangentMode: 0
+    - time: 0.5653249
+      value: -0.25612065
+      inSlope: -1.5302002
+      outSlope: -1.5302002
+      tangentMode: 0
+    - time: 0.68947744
+      value: 0.24446371
+      inSlope: -2.1786988
+      outSlope: -2.1786988
+      tangentMode: 0
+    - time: 0.7752408
+      value: -0.15912113
+      inSlope: -1.0110438
+      outSlope: -1.0110438
+      tangentMode: 0
+    - time: 0.893318
+      value: 0.0065496266
+      inSlope: 1.3382733
+      outSlope: 1.3382733
+      tangentMode: 0
+    - time: 0.9916667
+      value: -0.0062499046
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  speed: 1
+  frequency: 0.5
+  force: 0.003
 --- !u!114 &11473426
 MonoBehaviour:
   m_ObjectHideFlags: 1
