@@ -241,6 +241,8 @@ public class GameManager : MonoBehaviour
 
 		if( Cured.Count >= maxCharacters )
 			GameOver( true );
+
+		AudioManager.Instance.Play( "GodHand", 1f );
 	}
 
 	void StageFail()
@@ -265,7 +267,7 @@ public class GameManager : MonoBehaviour
 		SpawnInfected();	//	PUNISHMENT!!!
 		SpawnInfected();
 
-		AudioManager.Instance.Play( "Demon_1" );
+		AudioManager.Instance.Play( "DevilHand" );
 
 		DemonName.text = "";
 	}

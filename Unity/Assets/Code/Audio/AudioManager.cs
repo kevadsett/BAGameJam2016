@@ -39,4 +39,9 @@ public class AudioManager : MonoBehaviour
 	{
 		audioSource.PlayOneShot( audioClip );
 	}
+
+	public void Play (string clipName, float delay) {
+		audioSource.clip = AudioClips [clipName];
+		audioSource.PlayDelayed (delay);
+	}
 }
