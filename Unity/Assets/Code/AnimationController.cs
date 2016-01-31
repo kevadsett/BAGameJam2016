@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class AnimationController : MonoBehaviour {
-	[SerializeField] private AnimateToPoint godHandAnimator;
+	/*[SerializeField] private AnimateToPoint godHandAnimator;
 	[SerializeField] private AnimateToPoint devilHandAnimator1;
 	[SerializeField] private AnimateToPoint devilHandAnimator2;
 	[SerializeField] private AnimateToPoint victimAnimator;
@@ -70,5 +70,5 @@ public class AnimationController : MonoBehaviour {
 
 	private void Awake() {
 		Initialize();
-	}
+	}*/
 }

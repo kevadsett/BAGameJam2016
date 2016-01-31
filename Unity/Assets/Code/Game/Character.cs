@@ -9,8 +9,11 @@ public class Character : MonoBehaviour
 	[SerializeField] private GodHandAnimSeq godHandAnimSeq;
 	[SerializeField] private DevilHandAnimSeq devilHandAnimSeq;
 	[SerializeField] private int CharsPerPew;
-	[SerializeField] private Transform charRoot;
+	[SerializeField] private Transform sadRoot;
+	[SerializeField] private Transform happyRoot;
+	[SerializeField] private Transform ecstaticRoot;
 	[SerializeField] private Transform miniDemonRoot;
+	[SerializeField] private ParticleSystem poofCloud;
 
 	public float YCutOffOffset = -45.0f;
 
@@ -34,6 +37,7 @@ public class Character : MonoBehaviour
 		character.demonGO = demonGO;
 		demonGO.transform.parent = character.transform;
 		demonGO.transform.localPosition = Vector3.zero;
+		demonGO.SetActive(false);
 
 		character.DemonAmount = 0.0f;
 
@@ -41,7 +45,9 @@ public class Character : MonoBehaviour
 		dgo.transform.parent = character.miniDemonRoot;
 		dgo.transform.localPosition = Vector3.zero;
 
-		character.charRoot.gameObject.SetActive(false);
+		character.sadRoot.gameObject.SetActive(false);
+		character.happyRoot.gameObject.SetActive(false);
+		character.ecstaticRoot.gameObject.SetActive(false);
 
 		return character;
 	}
@@ -54,18 +60,20 @@ public class Character : MonoBehaviour
 	}
 
 	public void PositionInChoir(Transform choir, int pos, Action callback) {
+		sadRoot.gameObject.SetActive(false);
+		demonGO.SetActive(false);
+
 		Vector3 targetPos = choir.position + TargetPosForChoirPos(pos);
 		
 		transform.parent = choir;
-		godHandAnimSeq.Trigger(GodHand.OpenAnimator, GodHand.ClosedAnimator, animator, transform.position, targetPos, callback);
+		godHandAnimSeq.Trigger(GodHand.OpenAnimator, GodHand.ClosedAnimator, animator,
+								sadRoot, happyRoot, ecstaticRoot,
+								transform.position, targetPos, callback);
 	}
 
 	public void PositionAtPodium(Transform podium, Action callback) {
-		charRoot.gameObject.SetActive(true);
-		miniDemonRoot.gameObject.SetActive(false);
-
 		transform.parent = podium;
-		approachPodiumAnims.Trigger(animator, transform.position, podium.position, callback);
+		approachPodiumAnims.Trigger(animator, poofCloud, demonGO, miniDemonRoot, sadRoot, transform.position, podium.position, callback);
 	}
 
 	public void PositionInHell(Transform hell, Action callback) {
@@ -76,13 +84,15 @@ public class Character : MonoBehaviour
 	private Vector3 TargetPosForQueuePos(int pos) {
 		return Vector3.left * (float)(pos % CharsPerPew)
 			+ Vector3.up * ((float)(pos / CharsPerPew) * 0.62f + 0.6f)
-			+ Vector3.forward * (float)(pos / CharsPerPew);
+			+ Vector3.forward * (float)(pos / CharsPerPew)
+			+ Vector3.right * UnityEngine.Random.Range(-0.1f, 0.1f);
 	}
 
 	private Vector3 TargetPosForChoirPos(int pos) {
 		return Vector3.right * (float)(pos % CharsPerPew)
 			+ Vector3.up * ((float)(pos / CharsPerPew) * 0.62f + 0.6f)
-			+ Vector3.forward * (float)(pos / CharsPerPew);
+			+ Vector3.forward * (float)(pos / CharsPerPew)
+			+ Vector3.right * UnityEngine.Random.Range(-0.1f, 0.1f);
 	}
 	
 	void Update()
