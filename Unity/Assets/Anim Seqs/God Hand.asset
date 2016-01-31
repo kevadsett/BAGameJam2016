@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ee1e166349947a8bdc8a4724e7ba1c, type: 3}
   m_Name: God Hand
   m_EditorClassIdentifier: 
-  TweenGodHandOn: {fileID: 11400000, guid: 3a462339b89ec4200b3a0772aac6c68c, type: 2}
+  TweenGodHandOn: {fileID: 11400000, guid: 87a54dfed2f83415799d4b87f4dffcdc, type: 2}
   TweenToChoir: {fileID: 11400000, guid: 546845ca8fc1c453faba03e173b77e00, type: 2}
   TweenGodHandOff: {fileID: 11400000, guid: 3a462339b89ec4200b3a0772aac6c68c, type: 2}
   OffscreenPos: {x: 0, y: 6, z: 0}
