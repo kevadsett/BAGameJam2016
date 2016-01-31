@@ -14,7 +14,7 @@ public class VolumeAnimateUp : MonoBehaviour
 
 	void Update()
 	{
-		const float maxVolume = 0.7f;
+		const float maxVolume = 0.9f;
 		const float fadeUpTime = 1.5f;
 
 		volume += ( 1.0f / fadeUpTime ) * Time.deltaTime;
