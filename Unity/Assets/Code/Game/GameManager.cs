@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
 
 		var demon = GameObject.Instantiate( DemonPrefab ) as GameObject;
 
-		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDatabase.GetRandomDemon(), demon, callback );
+		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDeck.Draw(), demon, callback );
 		Infected.Enqueue( newCharacter );
 
 		const int maxInfected = 12;

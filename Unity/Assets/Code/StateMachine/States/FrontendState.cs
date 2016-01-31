@@ -7,6 +7,8 @@ public class FrontendState : State
 	public override void OnEnter()
 	{
 		SceneManager.LoadScene( "Frontend", LoadSceneMode.Additive );
+
+		MusicManager.Instance.RemoveAllClips();
 	}
 
 	public override void OnExit()

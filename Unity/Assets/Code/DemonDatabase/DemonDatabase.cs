@@ -40,3 +40,35 @@ public static class DemonDatabase
 		return GetAllDemons().Where( q => q.Type == type ).ToList();
 	}
 }
+
+public static class DemonDeck
+{
+	public static Queue<DemonData> Deck = new Queue<DemonData>();
+
+	public static void Shuffle()
+	{
+		Deck = new Queue<DemonData>();
+
+		var unshuffledDeck = DemonDatabase.GetAllDemons();
+
+		while( unshuffledDeck.Count > 0 )
+			Deck.Enqueue( GetRandomOutOfList( unshuffledDeck ) );
+	}
+
+	static DemonData GetRandomOutOfList( List<DemonData> list )
+	{
+		int element = (int)( Random.value * 1000 ) % list.Count;
+		var demon = list[ element ];
+		list.RemoveAt( element );
+
+		return demon;
+	}
+
+	public static DemonData Draw()
+	{
+		if( Deck.Count == 0 )
+			Shuffle();
+
+		return Deck.Dequeue();
+	}
+}
