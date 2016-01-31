@@ -106,7 +106,7 @@ public class Character : MonoBehaviour
 		Debug.Log( DemonAmount );
 
 		Vector3 minPos = new Vector3( 0.1f, -4.5f, 0.2f );
-		Vector3 maxPos = new Vector3( 0.1f, 0.0f, 0.2f );
+		Vector3 maxPos = new Vector3( 0.1f, -1.5f, 0.2f );
 
 		demonGO.transform.localPosition = Vector3.Lerp( minPos, maxPos, DemonAmount );
 
