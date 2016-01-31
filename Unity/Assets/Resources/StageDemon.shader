@@ -38,6 +38,7 @@
 				float2 uv : TEXCOORD0;
 				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
+				float4 vertex2 : TEXCOORD1;
 			};
 
 			sampler2D _MainTex;
@@ -51,6 +52,9 @@
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				UNITY_TRANSFER_FOG(o,o.vertex);
+
+				o.vertex2 = o.vertex;
+
 				return o;
 			}
 			
@@ -59,7 +63,7 @@
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
 
-				if(i.vertex.y < _YCutOff)
+				if(i.vertex2.y < _YCutOff)
 					discard;
 
 				if( _Alpha == 0.0 )
