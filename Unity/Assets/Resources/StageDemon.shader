@@ -4,21 +4,28 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_YCutOff ("CutOff", Float) = 250.0
+		_Alpha ("Alpha", Float) = 1.0
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags {"Queue" = "Overlay" }
+		//Blend SrcAlpha OneMinusSrcAlpha
+		//ZWrite Off
 		LOD 100
 
 		Pass
 		{
+			
+
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
 			// make fog work
-			#pragma multi_compile_fog
+			//#pragma multi_compile_fog
 			
 			#include "UnityCG.cginc"
+
+			
 
 			struct appdata
 			{
@@ -36,6 +43,7 @@
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
 			float _YCutOff;
+			float _Alpha;
 			
 			v2f vert (appdata v)
 			{
@@ -52,6 +60,9 @@
 				fixed4 col = tex2D(_MainTex, i.uv);
 
 				if(i.vertex.y < _YCutOff)
+					discard;
+
+				if( _Alpha == 0.0 )
 					discard;
 				
 				return col;

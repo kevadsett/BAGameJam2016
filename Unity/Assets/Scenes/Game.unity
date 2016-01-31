@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterPrefab: {fileID: 11473426, guid: ae56972487df644529c1a70541313e2d, type: 2}
-  DemonPrefab: {fileID: 196546, guid: 79af6cfdb54db471fa3f8424752729d7, type: 2}
+  DemonPrefab: {fileID: 149020, guid: 16d4519500c314014b066c75240c2c22, type: 2}
   QueueTransform: {fileID: 661156239}
   PodiumTransform: {fileID: 1976719712}
   ChoirTransform: {fileID: 811337781}

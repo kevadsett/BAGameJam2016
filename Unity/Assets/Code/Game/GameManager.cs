@@ -80,11 +80,13 @@ public class GameManager : MonoBehaviour
         if( !IsPlaying )
 			return;
 
+		var myDemonData = DemonDeck.Draw();
+
 		var demon = GameObject.Instantiate( DemonPrefab ) as GameObject;
+		demon.GetComponent< DemonRoot >().ActivateDemon( myDemonData.Type );
 
-		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, DemonDeck.Draw(), demon, callback );
+		var newCharacter = Character.Instantiate( CharacterPrefab, Infected.Count, QueueTransform, myDemonData, demon, callback );
 		Infected.Enqueue( newCharacter );
-
 
 		if( Infected.Count() > maxCharacters )
 		{

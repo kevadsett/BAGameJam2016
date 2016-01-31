@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
 	[SerializeField] private Transform charRoot;
 	[SerializeField] private Transform miniDemonRoot;
 
+	public float YCutOffOffset = -45.0f;
+
 	GameObject demonGO;
 
 	private AnimateToPoint animator;
@@ -85,13 +87,28 @@ public class Character : MonoBehaviour
 	
 	void Update()
 	{
-		Vector3 minPos = new Vector3( 0.0f, -3.6f, 0.2f );
-		Vector3 maxPos = new Vector3( 0.0f, 0.0f, 0.2f );
+		float alpha = 1.0f;
+		if( DemonAmount == 0.0f )
+		{
+			alpha = 0.0f;
+		}
+
+		Debug.Log( DemonAmount );
+
+		Vector3 minPos = new Vector3( 0.1f, -4.5f, 0.2f );
+		Vector3 maxPos = new Vector3( 0.1f, 0.0f, 0.2f );
 
 		demonGO.transform.localPosition = Vector3.Lerp( minPos, maxPos, DemonAmount );
 
 		var screenPoint = Camera.main.WorldToScreenPoint( transform.position );
 
-		demonGO.GetComponent< StageDemon >().DemonMaterial.GetComponent<Renderer>().material.SetFloat( "_YCutOff", screenPoint.y );
+
+		var materialList = demonGO.GetComponent< StageDemon >().DemonMaterials;
+
+		foreach( var materialGO in materialList )
+		{
+			materialGO.GetComponent<Renderer>().material.SetFloat( "_YCutOff", screenPoint.y + YCutOffOffset );
+			materialGO.GetComponent<Renderer>().material.SetFloat( "_Alpha", alpha );
+		}
 	}
 }
