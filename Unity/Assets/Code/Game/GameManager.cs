@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
 		if( Cured.Count >= maxCharacters )
 			GameOver( true );
 
-		AudioManager.Instance.Play( "GodHand", 1f );
+		AudioManager.Instance.Play( "GodHand");
 	}
 
 	void StageFail()
