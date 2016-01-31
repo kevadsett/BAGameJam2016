@@ -8,9 +8,7 @@
 	}
 	SubShader
 	{
-		Tags {"Queue" = "Overlay" }
-		//Blend SrcAlpha OneMinusSrcAlpha
-		//ZWrite Off
+		Tags {"Queue" = "opaque" }
 		LOD 100
 
 		Pass
@@ -63,11 +61,11 @@
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
 
-				if(i.vertex2.y < _YCutOff)
-					discard;
+				//if(i.vertex2.y < _YCutOff)
+				//	discard;
 
-				if( _Alpha == 0.0 )
-					discard;
+				//if( _Alpha == 0.0 )
+				//	discard;
 				
 				return col;
 			}
