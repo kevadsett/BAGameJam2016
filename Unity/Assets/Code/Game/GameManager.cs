@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
 			Infected.ElementAt(i).PositionInQueue(QueueTransform, i, () => {});
 		}
 
-		DemonName.text = stageCharacter.DemonData.Type.ToString() + " " + stageCharacter.DemonData.Name.ToUpperInvariant();
+		DemonName.text = stageCharacter.DemonData.Name.ToUpperInvariant();
 	}
 
 	public void OnInputValueChanged()

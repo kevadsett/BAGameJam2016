@@ -122,7 +122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22474220, guid: c6d25a6c23b614a348eae76fc33c670f, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22474220, guid: c6d25a6c23b614a348eae76fc33c670f, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -169,32 +169,9 @@ Prefab:
       value: 
       objectReference: {fileID: 1873459890}
     - target: {fileID: 11463608, guid: c6d25a6c23b614a348eae76fc33c670f, type: 2}
-      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnInputValueSubmitted
-      objectReference: {fileID: 0}
-    - target: {fileID: 11463608, guid: c6d25a6c23b614a348eae76fc33c670f, type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1873459890}
-    - target: {fileID: 11463608, guid: c6d25a6c23b614a348eae76fc33c670f, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnInputValueChanged
-      objectReference: {fileID: 0}
-    - target: {fileID: 11493722, guid: c6d25a6c23b614a348eae76fc33c670f, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 9da08d32c701f410bae705ea7ca2cfcd,
-        type: 3}
-    - target: {fileID: 11441852, guid: c6d25a6c23b614a348eae76fc33c670f, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 9da08d32c701f410bae705ea7ca2cfcd,
-        type: 3}
-    - target: {fileID: 11426676, guid: c6d25a6c23b614a348eae76fc33c670f, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 1c9e18abcea96430990cd49146954584,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6d25a6c23b614a348eae76fc33c670f, type: 2}
   m_IsPrefabParent: 0
