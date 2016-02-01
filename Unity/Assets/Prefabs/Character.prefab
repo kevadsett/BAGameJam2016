@@ -255,7 +255,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 425956}
   m_Layer: 0
-  m_Name: Mini Demon Node
+  m_Name: Big Demon Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,6 +327,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &178674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 479254}
+  m_Layer: 0
+  m_Name: Mini Demon Node
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &198648
 GameObject:
   m_ObjectHideFlags: 1
@@ -368,7 +383,7 @@ Transform:
   m_Children:
   - {fileID: 444856}
   m_Father: {fileID: 461598}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &414062
 Transform:
   m_ObjectHideFlags: 1
@@ -416,7 +431,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461598}
@@ -445,7 +460,7 @@ Transform:
   m_Children:
   - {fileID: 414062}
   m_Father: {fileID: 461598}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &440910
 Transform:
   m_ObjectHideFlags: 1
@@ -497,7 +512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461598}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &452434
 Transform:
   m_ObjectHideFlags: 1
@@ -545,6 +560,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 425956}
+  - {fileID: 479254}
   - {fileID: 436828}
   - {fileID: 408190}
   - {fileID: 490368}
@@ -574,6 +590,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 444856}
+  m_RootOrder: 1
+--- !u!4 &479254
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 461598}
   m_RootOrder: 1
 --- !u!4 &480198
 Transform:
@@ -615,7 +643,7 @@ Transform:
   m_Children:
   - {fileID: 485674}
   m_Father: {fileID: 461598}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!23 &2313322
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1164,8 +1192,10 @@ MonoBehaviour:
   sadRoot: {fileID: 436828}
   happyRoot: {fileID: 408190}
   ecstaticRoot: {fileID: 490368}
-  miniDemonRoot: {fileID: 425956}
+  miniDemonRoot: {fileID: 479254}
+  bigDemonRoot: {fileID: 425956}
   poofCloud: {fileID: 19895552}
+  YCutOffOffset: -70
 --- !u!198 &19895552
 ParticleSystem:
   m_ObjectHideFlags: 1

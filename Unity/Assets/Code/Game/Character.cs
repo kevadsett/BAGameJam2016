@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
 	[SerializeField] private Transform happyRoot;
 	[SerializeField] private Transform ecstaticRoot;
 	[SerializeField] private Transform miniDemonRoot;
+	[SerializeField] private Transform bigDemonRoot;
 	[SerializeField] private ParticleSystem poofCloud;
 
 	public float YCutOffOffset = -70.0f;
@@ -35,7 +36,7 @@ public class Character : MonoBehaviour
 		character.DemonData = demonData;
 
 		character.demonGO = demonGO;
-		demonGO.transform.parent = character.transform;
+		demonGO.transform.parent = character.bigDemonRoot;
 		demonGO.transform.localPosition = Vector3.zero;
 		demonGO.SetActive(false);
 
