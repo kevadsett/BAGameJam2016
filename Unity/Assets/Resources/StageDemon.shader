@@ -8,7 +8,7 @@
 	}
 	SubShader
 	{
-		Tags {"Queue" = "opaque" }
+		Tags {"Queue" = "Geometry" }
 		LOD 100
 
 		Pass
