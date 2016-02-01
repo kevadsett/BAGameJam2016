@@ -61,6 +61,7 @@ public class Character : MonoBehaviour
 	}
 
 	public void PositionInChoir(Transform choir, int pos, Action callback) {
+		Flasher.Instance.Flash(Color.white);
 		sadRoot.gameObject.SetActive(false);
 		demonGO.SetActive(false);
 
@@ -78,6 +79,7 @@ public class Character : MonoBehaviour
 	}
 
 	public void PositionInHell(Transform hell, Action callback) {
+		Flasher.Instance.Flash(Color.black);
 		demonGO.SetActive(false);
 		transform.parent = hell;
 		devilHandAnimSeq.Trigger(DevilHand.LeftAnimator, DevilHand.RightAnimator, animator, transform.position, callback);
