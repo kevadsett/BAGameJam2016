@@ -92,7 +92,8 @@ public class Character : MonoBehaviour
 		return Vector3.right * (float)(pos % CharsPerPew)
 			+ Vector3.up * ((float)(pos / CharsPerPew) * 0.62f + 0.6f)
 			+ Vector3.forward * (float)(pos / CharsPerPew)
-			+ Vector3.right * UnityEngine.Random.Range(-0.1f, 0.1f);
+			+ Vector3.right * UnityEngine.Random.Range(-0.1f, 0.1f)
+			+ Vector3.down * 0.2f;
 	}
 	
 	void Update()
