@@ -135,6 +135,9 @@ public class GameManager : MonoBehaviour
 
 	void newCharacterOnStage()
 	{
+		if(!IsPlaying)
+			return;
+
 		DemonName.text = "";
 
 		inputField.gameObject.SetActive( false );
@@ -160,6 +163,9 @@ public class GameManager : MonoBehaviour
 
 	void newCharacterOnStagePlaced()
 	{
+		if(!IsPlaying)
+			return;
+
 		stageCharacter = Infected.Dequeue();
 		stageTimer = maxTimeOnStage;
 		IsCountingDown = true;
@@ -182,6 +188,9 @@ public class GameManager : MonoBehaviour
 
 	public void OnInputValueChanged()
 	{
+		if(!IsPlaying)
+			return;
+
 		if( inputField.readOnly )
 			return;
 
@@ -198,6 +207,9 @@ public class GameManager : MonoBehaviour
 
 	public void OnInputValueSubmitted()
 	{
+		if(!IsPlaying)
+			return;
+
 		if( inputField.readOnly )
 			return;
 
