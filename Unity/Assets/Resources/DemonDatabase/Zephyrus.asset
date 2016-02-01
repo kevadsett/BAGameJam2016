@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Zephyrus
   m_EditorClassIdentifier: 
   Type: 0
-  Name: 
+  Name: Zephyrus
   ArtAsset: {fileID: 0}
-  Chant: 
-  ChantAudio: {fileID: 0}
+  Chant: somebody light a match
+  ChantAudio: {fileID: 8300000, guid: 2305226848b364435b27d97ff39c4a27, type: 3}

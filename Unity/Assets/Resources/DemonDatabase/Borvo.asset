@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d4d39a427454de69866daa3f6ce112, type: 3}
   m_Name: Borvo
   m_EditorClassIdentifier: 
-  Type: 0
-  Name: 
-  ArtAsset: {fileID: 0}
-  Chant: 
-  ChantAudio: {fileID: 0}
+  Type: 3
+  Name: Borvo
+  ArtAsset: {fileID: 173242, guid: 29a18ef990f1a40c29277e5723a86e62, type: 2}
+  Chant: got milk
+  ChantAudio: {fileID: 8300000, guid: 036e02ae1269e470897fc297755dd2b0, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Skeiron
   m_EditorClassIdentifier: 
   Type: 0
-  Name: 
-  ArtAsset: {fileID: 0}
-  Chant: 
-  ChantAudio: {fileID: 0}
+  Name: Skeiron
+  ArtAsset: {fileID: 191950, guid: 30896a2a8105b4ed7afd67420b9524d2, type: 2}
+  Chant: in the air tonight
+  ChantAudio: {fileID: 8300000, guid: 79cc95a2e45c64da59746f6242107c9c, type: 3}

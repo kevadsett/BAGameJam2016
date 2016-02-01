@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Aeolus
   m_EditorClassIdentifier: 
   Type: 0
-  Name: 
-  ArtAsset: {fileID: 0}
-  Chant: 
-  ChantAudio: {fileID: 0}
+  Name: Aelous
+  ArtAsset: {fileID: 191950, guid: 30896a2a8105b4ed7afd67420b9524d2, type: 2}
+  Chant: smoke in the wind
+  ChantAudio: {fileID: 8300000, guid: 94fff0e64e9504f1383c395cf14c10ca, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Fontus
   m_EditorClassIdentifier: 
   Type: 0
-  Name: 
-  ArtAsset: {fileID: 0}
-  Chant: 
-  ChantAudio: {fileID: 0}
+  Name: Fontus
+  ArtAsset: {fileID: 173242, guid: 29a18ef990f1a40c29277e5723a86e62, type: 2}
+  Chant: fetch the umbrella
+  ChantAudio: {fileID: 8300000, guid: 9049c8d8ddf8842769800e8de8e1c050, type: 3}
