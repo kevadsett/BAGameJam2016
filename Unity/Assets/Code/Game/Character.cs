@@ -78,6 +78,7 @@ public class Character : MonoBehaviour
 	}
 
 	public void PositionInHell(Transform hell, Action callback) {
+		demonGO.SetActive(false);
 		transform.parent = hell;
 		devilHandAnimSeq.Trigger(DevilHand.LeftAnimator, DevilHand.RightAnimator, animator, transform.position, callback);
 	}
