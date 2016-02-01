@@ -214,7 +214,8 @@ public class GameManager : MonoBehaviour
 			return;
 
 		bool success = false;
-		if( inputField.text == stageCharacter.DemonData.Chant || ( debugMode && inputField.text == "test" ) )
+		if( inputField.text.ToUpperInvariant() == stageCharacter.DemonData.Chant.ToUpperInvariant()
+		 || ( debugMode && inputField.text == "test" ) )
 			success = true;
 		
 		if( success )
