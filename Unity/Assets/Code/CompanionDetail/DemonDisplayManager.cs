@@ -45,7 +45,8 @@ public class DemonDisplayManager : MonoBehaviour {
 
 	void InstantiateCurrentDemon() {
 		_currentDemonInstance = Instantiate (_currentDemon.ArtAsset) as GameObject;
-		_currentDemonInstance.transform.localScale = new Vector3 (2, 2, 2);
+		_currentDemonInstance.transform.localScale = new Vector3 (1.48f, 1.48f, 1.48f);
+		_currentDemonInstance.transform.position = new Vector3 (0, 0.2f, 0);
 		_currentDemonInstance.transform.SetParent (DemonContainer, true);
 
 		Transform canvas = GameObject.Find ("DemonCanvas").transform;
