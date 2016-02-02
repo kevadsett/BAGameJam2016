@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: Podium Appear
   m_EditorClassIdentifier: 
   TweenToQueue: {fileID: 11400000, guid: 9de389439e6d04ca39a370e3577b4a82, type: 2}
+  ShakeForce: 0.01

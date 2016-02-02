@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
 	[SerializeField] private Transform miniDemonRoot;
 	[SerializeField] private Transform bigDemonRoot;
 	[SerializeField] private ParticleSystem poofCloud;
+	[SerializeField] private ParticleSystem miniPoofCloud;
 
 	public float YCutOffOffset = -70.0f;
 
@@ -34,6 +35,7 @@ public class Character : MonoBehaviour
 		character.animator = go.GetComponent<AnimateToPoint>();
 		character.PositionInQueue(queue, queuePosition, callback);
 		character.DemonData = demonData;
+		character.miniPoofCloud.Play();
 
 		character.demonGO = demonGO;
 		demonGO.transform.parent = character.bigDemonRoot;
@@ -55,6 +57,7 @@ public class Character : MonoBehaviour
 
 	public void PositionInQueue(Transform queue, int pos, Action callback) {
 		Vector3 targetPos = queue.position + TargetPosForQueuePos(pos);
+		transform.position = targetPos;
 
 		transform.parent = queue;
 		enterQueueAnims.Trigger(animator, transform.position, targetPos, callback);

@@ -15,6 +15,7 @@ public class CharacterShaker : MonoBehaviour {
 	[SerializeField] float speed;
 	[SerializeField] float frequency;
 	[SerializeField] float force;
+	[SerializeField] float screenShakeForce;
 
 	private List<ShakeEffect> activeEffects = new List<ShakeEffect>();
 	private Vector3 rootPosition;
@@ -56,5 +57,7 @@ public class CharacterShaker : MonoBehaviour {
 		var tangent = Vector3.Cross(normal, Vector3.forward).normalized;
 
 		activeEffects.Add(new ShakeEffect { force = force, timer = 1.0f, normal = normal, tangent = tangent });
+
+		ScreenShaker.Instance.ApplyShake(screenShakeForce);
 	}
 }

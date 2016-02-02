@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10fd695dfcba44a95b2bb8a944b4a82e, type: 3}
   m_Name: EnterQueue
   m_EditorClassIdentifier: 
-  duration: 0.3
+  duration: 0.7
   timeScale:
     serializedVersion: 2
     m_Curve:

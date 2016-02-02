@@ -5,6 +5,7 @@ using System;
 public class PodiumAppearAnimSeq : ScriptableObject
 {
 	[SerializeField] private SimpleTween TweenToQueue;
+	[SerializeField] private float ShakeForce;
 
 	public void Trigger(AnimateToPoint victimAnimator,
 		ParticleSystem poofCloud,
@@ -18,9 +19,11 @@ public class PodiumAppearAnimSeq : ScriptableObject
 		demonRoot.gameObject.SetActive(false);
 		victimAnimator.transform.position = startPos;
 		poofCloud.Play();
+		ScreenShaker.Instance.ApplyShake(ShakeForce);
 
 		victimAnimator.Trigger(TweenToQueue, podiumPos, () => {
 			poofCloud.Play();
+			ScreenShaker.Instance.ApplyShake(ShakeForce);
 			bigDemonRoot.SetActive(true);
 			sadRoot.gameObject.SetActive(true);
 			onComplete();
