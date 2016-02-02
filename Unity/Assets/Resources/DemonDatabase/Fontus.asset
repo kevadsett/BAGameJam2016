@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d4d39a427454de69866daa3f6ce112, type: 3}
   m_Name: Fontus
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 3
   Name: Fontus
   ArtAsset: {fileID: 173242, guid: 29a18ef990f1a40c29277e5723a86e62, type: 2}
   Chant: fetch the umbrella
